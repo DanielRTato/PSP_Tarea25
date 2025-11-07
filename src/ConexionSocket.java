@@ -7,11 +7,10 @@ public class ConexionSocket {
         try {
             Socket socket = new Socket(ip,puerto);
 
-            System.out.println("Conectado a " + socket.getInetAddress());
-            socket.close();
+            System.out.println("El puerto: " + puerto + " está abierto - " + socket.getInetAddress());
 
         } catch (IOException e) {
-            System.out.println("Error: No se pudo conectar.");
+            System.out.println("El puerto: " + puerto + " está cerrado");
         }
     }
 

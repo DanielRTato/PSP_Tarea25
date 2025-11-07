@@ -6,31 +6,35 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         ConexionSocket cst = new ConexionSocket();
 
-
-
         while (true) {
-            System.out.println("Introduce la dirección IP, o escribe 'salir' para salir");
+            System.out.print("Introduce la dirección IP(o localhost), o escribe 'salir' para terminar. ");
             String direccion = scanner.nextLine().toLowerCase();
 
             if (direccion.equals("salir")){
                 System.out.println("Saliendo...");
-                return;
+                break;
             }
-            System.out.println("Elige:" +
-                    "1- Para probr los puertos 'famosos' " +
-                    "2- Para elegir otro puerto");
+            System.out.println("Elige una opción:");
+            System.out.println("1 - Probar los puertos famosos (21, 22, 80, 443)");
+            System.out.println("2 - Probar un puerto específico");
             int opcion = scanner.nextInt();
 
             if (opcion == 1) {
+                int[] puertosFamosos = {21, 22, 80, 443};
 
+                for (int puerto : puertosFamosos) {
+                    cst.establecerConexion(direccion, puerto);
+                }
             } else if (opcion == 2) {
-                System.out.println("Introduce el puerto ");
+                System.out.print("Introduce el puerto que quieres probar:");
                 int puerto = scanner.nextInt();
 
                 cst.establecerConexion(direccion, puerto);
 
+            } else {
+                System.out.println("Opción incorrecta, intentalo otra vez");
             }
-
         }
+        scanner.close();
     }
 }
